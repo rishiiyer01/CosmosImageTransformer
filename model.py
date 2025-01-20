@@ -201,7 +201,7 @@ class LatentModel(nn.Module):
 class Block(nn.Module):
     def __init__(self, hidden_dim):
         super().__init__()
-        self.attention =Attention(hidden_dim,num_heads=12)
+        self.attention =Attention(hidden_dim,num_heads=16)
         self.ff = FeedForward(hidden_dim)
         self.norm1 = nn.LayerNorm(hidden_dim)
         self.norm2 = nn.LayerNorm(hidden_dim)
@@ -229,7 +229,7 @@ class FeedForward(nn.Module):
 
 
 class Attention(nn.Module):
-    def __init__(self, hidden_dim, num_heads=12):
+    def __init__(self, hidden_dim, num_heads=16):
         super().__init__()
         self.num_heads = num_heads
         self.head_dim = hidden_dim // num_heads

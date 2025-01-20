@@ -78,7 +78,7 @@ sampler = torch.utils.data.distributed.DistributedSampler(
 
 dataloader = torch.utils.data.DataLoader(
     dataset,
-    batch_size=512 // world_size,  # Adjust batch size per GPU
+    batch_size=256 // world_size,  # Adjust batch size per GPU
     shuffle=(sampler is None),
     num_workers=12,
     pin_memory=True,
@@ -87,7 +87,7 @@ dataloader = torch.utils.data.DataLoader(
 )
 
 # --- Model and FSDP Wrapping ---
-model = LatentModel(6, 768, 12).to(local_rank)  # Move to local_rank
+model = LatentModel(6, 1024, 16).to(local_rank)  
 
 
 model = FSDP(model,
